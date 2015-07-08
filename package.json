@@ -30,9 +30,10 @@
     "react-hot-api": "^0.4.5"
   },
   "jspm": {
+    "directories": {},
     "dependencies": {
-      "react": "^0.13.3",
-      "react-hot-api": "^0.4.5"
+      "react": "npm:react@^0.13.3",
+      "react-hot-api": "npm:react-hot-api@^0.4.5"
     }
   }
 }
