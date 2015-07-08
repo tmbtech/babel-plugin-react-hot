@@ -10,12 +10,12 @@ function makeHot (React, ReactMount, filename, displayName) {
       || ReactMount._instancesByContainerID
       || [];
   }
-
+  
   return function (ReactClass) {
     if (!madeHot[id]) {
-      madeHot[id] = ReactHotAPI(getRootInstances, React)(ReactClass, id);
+      madeHot[id] = ReactHotAPI(getRootInstances, React);
     }
-
-    return madeHot[id];
+    
+    return madeHot[id](ReactClass, id);
   };
 }
