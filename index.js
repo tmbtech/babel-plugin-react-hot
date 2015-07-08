@@ -76,8 +76,8 @@ function transform (babel) {
         )
       );
     }
-  });
      */
+  });
 }
 
 exports.makeHot = makeHot;
