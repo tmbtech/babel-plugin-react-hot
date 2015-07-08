@@ -37,42 +37,12 @@ function transform (babel) {
             [
               React,
               mount,
-              t.literal(file.opts.filename+'$$$'+node.id.name)
+              t.identifier('__filename'),
+              t.literal(node.id.name)
             ]
           )
         )
       );
-    },
-
-    /**
-     * ReactClassComponent
-    CallExpression: function (node, parent, scope, file) {
-      var callee = this.get('callee');
-      if (!callee.matchesPattern('React.createClass')) {
-        return;
-      }
-      
-      var React = file.addImport(reactPath, reactName, 'absolute');
-      var mount = file.addImport(mountPath, mountName, 'absolute');
-      var hot   = file.addImport(hotPath,   hotName,   'absolute');
-
-      callee.getStatementParent().insertAfter(
-        t.assignmentExpression(
-          '=',
-          t.identifier(parent.id.name),
-          t.callExpression(
-            t.callExpression(
-              hot,
-              [
-                t.identifier('React'),
-                t.literal(file.opts.filename+'$$$'+parent.id.name)
-              ]
-            ),
-            [t.identifier(parent.id.name)]
-          )
-        )
-      );
     }
-     */
   });
 }
