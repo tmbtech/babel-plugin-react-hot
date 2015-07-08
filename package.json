@@ -1,0 +1,32 @@
+{
+  "name": "babel-plugin-react-hot",
+  "version": "0.1.0",
+  "description": "Babel plugin using `react-hot-api` to add hot reloading to `React.createClass` and all classes with a `render` method.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/loggur/babel-plugin-react-hot.git"
+  },
+  "keywords": [
+    "babel",
+    "plugin",
+    "react",
+    "hot",
+    "api",
+    "reload",
+    "loader"
+  ],
+  "author": "timbur",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/loggur/babel-plugin-react-hot/issues"
+  },
+  "homepage": "https://github.com/loggur/babel-plugin-react-hot#readme",
+  "dependencies": {
+    "react": "^0.13.3",
+    "react-hot-api": "^0.4.5"
+  }
+}
