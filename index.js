@@ -1,13 +1,10 @@
-var ReactHotAPI = require('react-hot-api');
-
-var pluginPath = 'babel-plugin-react-hot';
-var pluginName = 'reactHotPlugin';
-var reactPath  = 'react';
-var reactName  = 'React';
-var mountPath  = 'react/lib/ReactMount';
-var mountName  = 'ReactMount';
-
-var madeHot = {};
+var pluginPath  = 'babel-plugin-react-hot';
+var makeHotPath = pluginPath+'/makeHot';
+var makeHotName = 'makeHot';
+var reactPath   = 'react';
+var reactName   = 'React';
+var mountPath   = 'react/lib/ReactMount';
+var mountName   = 'ReactMount';
 
 function isRenderMethod (member) {
   return member.kind === 'method' &&
@@ -28,18 +25,18 @@ function transform (babel) {
         return;
       }
 
-      var plugin = file.addImport(pluginPath, pluginName, 'absolute');
-      var React  = file.addImport(reactPath,  reactName,  'absolute');
-      var mount  = file.addImport(mountPath,  mountName,  'absolute');
-      
+      var makeHot = file.addImport(makeHotPath, makeHotName,  'absolute');
+      var React   = file.addImport(reactPath,   reactName,    'absolute');
+      var mount   = file.addImport(mountPath,   mountName,    'absolute');
+
       node.decorators = node.decorators || [];
       node.decorators.push(
         t.decorator(
           t.callExpression(
-            plugin.makeHot,
+            makeHot,
             [
-              t.identifier(reactName),
-              t.identifier(mountName),
+              React,
+              mount,
               t.literal(file.opts.filename+'$$$'+node.id.name)
             ]
           )
@@ -78,15 +75,4 @@ function transform (babel) {
     }
      */
   });
-}
-
-exports.makeHot = makeHot;
-function makeHot (React, ReactMount, id) {
-  return function (ReactClass) {
-    if (!madeHot[id]) {
-      madeHot[id] = ReactHotAPI(ReactMount, React)(ReactClass, id);
-    }
-
-    return madeHot[id](ReactClass);
-  };
 }
