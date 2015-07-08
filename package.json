@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Babel plugin using `react-hot-api` to add hot reloading to `React.createClass` and all classes with a `render` method.",
   "main": "index.js",
+  "jspm": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
