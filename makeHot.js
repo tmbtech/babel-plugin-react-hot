@@ -2,7 +2,7 @@ var ReactHotAPI = require('react-hot-api');
 var madeHot = {};
 
 module.exports = makeHot;
-function makeHot (React, ReactMount, filename, displayName, create) {
+function makeHot (React, ReactMount, filename, displayName) {
   var id = filename+'$$$'+displayName;
 
   function getRootInstances () {
@@ -11,17 +11,11 @@ function makeHot (React, ReactMount, filename, displayName, create) {
       || [];
   }
   
-  function decorator (ReactClass) {
+  return function (ReactClass) {
     if (!madeHot[id]) {
       madeHot[id] = ReactHotAPI(getRootInstances, React);
     }
     
     return madeHot[id](ReactClass, id);
-  }
-
-  function createClass (obj) {
-    return decorator(React.createClass(obj));
-  }
-
-  return create ? createClass : decorator;
+  };
 }

@@ -50,7 +50,7 @@ function transform (babel) {
      */
     CallExpression: function (node, parent, scope, file) {
       var callee = this.get('callee');
-      if (!callee.matchesPattern('React.createClass')) {
+      if (node._hotDecorated || !callee.matchesPattern('React.createClass')) {
         return;
       }
       
@@ -58,17 +58,19 @@ function transform (babel) {
       var React   = file.addImport(reactPath,   reactName,    'absolute');
       var mount   = file.addImport(mountPath,   mountName,    'absolute');
       
-      callee.replaceWith(
+      node._hotDecorated = true;
+
+      return t.callExpression(
         t.callExpression(
           makeHot,
           [
             React,
             mount,
             t.identifier('__filename'),
-            t.literal(node && node.id && node.id.name || ''),
-            t.literal(true)
+            t.literal(node && node.id && node.id.name || '')
           ]
-        )
+        ),
+        [node]
       );
     }
   });
