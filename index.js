@@ -43,6 +43,33 @@ function transform (babel) {
           )
         )
       );
+    },
+
+    /**
+     * ReactClassComponent
+     */
+    CallExpression: function (node, parent, scope, file) {
+      var callee = this.get('callee');
+      if (!callee.matchesPattern('React.createClass')) {
+        return;
+      }
+      
+      var makeHot = file.addImport(makeHotPath, makeHotName,  'absolute');
+      var React   = file.addImport(reactPath,   reactName,    'absolute');
+      var mount   = file.addImport(mountPath,   mountName,    'absolute');
+      
+      callee.replaceWith(
+        t.callExpression(
+          makeHot,
+          [
+            React,
+            mount,
+            t.identifier('__filename'),
+            t.literal(node && node.id && node.id.name || ''),
+            t.literal(true)
+          ]
+        )
+      );
     }
   });
 }
