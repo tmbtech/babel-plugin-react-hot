@@ -1,10 +1,19 @@
-var pluginPath  = 'babel-plugin-react-hot';
-var makeHotPath = pluginPath+'/makeHot';
+if (typeof global === 'undefined' && typeof window !== 'undefined') {
+  global = window;
+}
+
+var System = global && global.System;
+var pluginPath = 'babel-plugin-react-hot';
+
 var makeHotName = 'makeHot';
-var reactPath   = 'react';
-var reactName   = 'React';
-var mountPath   = 'react/lib/ReactMount';
-var mountName   = 'ReactMount';
+var makeHotPath = System && System.normalizeSync('./makeHot')
+  || pluginPath+'/makeHot';
+
+var reactName = 'React';
+var reactPath = 'react';
+
+var mountName = 'ReactMount';
+var mountPath = 'react/lib/ReactMount';
 
 function isRenderMethod (member) {
   return member.kind === 'method' &&
