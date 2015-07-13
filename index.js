@@ -6,8 +6,7 @@ var System = global && global.System;
 var pluginPath = 'babel-plugin-react-hot';
 
 var makeHotName = 'makeHot';
-var makeHotPath = System && System.normalizeSync('./makeHot')
-  || pluginPath+'/makeHot';
+var makeHotPath = (System ? __dirname : pluginPath)+'/makeHot';
 
 var reactName = 'React';
 var reactPath = 'react';
