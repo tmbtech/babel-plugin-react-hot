@@ -6,7 +6,7 @@ var System = global && global.System;
 var pluginPath = 'babel-plugin-react-hot';
 
 var makeHotName = 'makeHot';
-var makeHotPath = (System ? __dirname : pluginPath)+'/makeHot';
+var makeHotPath = (System && __dirname || pluginPath)+'/makeHot';
 
 var reactName = 'React';
 var reactPath = 'react';
@@ -33,9 +33,9 @@ function transform (babel) {
         return;
       }
 
-      var makeHot = file.addImport(makeHotPath, makeHotName,  'absolute');
-      var React   = file.addImport(reactPath,   reactName,    'absolute');
-      var mount   = file.addImport(mountPath,   mountName,    'absolute');
+      var makeHot = file.addImport(makeHotPath, makeHotName);
+      var React   = file.addImport(reactPath,   reactName);
+      var mount   = file.addImport(mountPath,   mountName);
 
       node.decorators = node.decorators || [];
       node.decorators.push(
@@ -45,7 +45,7 @@ function transform (babel) {
             [
               React,
               mount,
-              t.identifier('__filename'),
+              t.literal(file.opts.filename),
               t.literal(node.id.name)
             ]
           )
@@ -62,9 +62,9 @@ function transform (babel) {
         return;
       }
       
-      var makeHot = file.addImport(makeHotPath, makeHotName,  'absolute');
-      var React   = file.addImport(reactPath,   reactName,    'absolute');
-      var mount   = file.addImport(mountPath,   mountName,    'absolute');
+      var makeHot = file.addImport(makeHotPath, makeHotName);
+      var React   = file.addImport(reactPath,   reactName);
+      var mount   = file.addImport(mountPath,   mountName);
       
       node._hotDecorated = true;
 
@@ -74,7 +74,7 @@ function transform (babel) {
           [
             React,
             mount,
-            t.identifier('__filename'),
+            t.literal(file.opts.filename),
             t.literal(node && node.id && node.id.name || '')
           ]
         ),
