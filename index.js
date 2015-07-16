@@ -45,7 +45,7 @@ function transform (babel) {
             [
               React,
               mount,
-              t.literal(file.opts.filename),
+              t.literal(file.opts._address || file.opts.filename),
               t.literal(node.id.name)
             ]
           )
@@ -74,7 +74,7 @@ function transform (babel) {
           [
             React,
             mount,
-            t.literal(file.opts.filename),
+            t.literal(file.opts._address || file.opts.filename),
             t.literal(node && node.id && node.id.name || '')
           ]
         ),
