@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-react-hot",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Babel plugin using `react-hot-api` to add hot reloading to `React.createClass` and all classes with a `render` method.",
   "main": "index.js",
   "scripts": {
