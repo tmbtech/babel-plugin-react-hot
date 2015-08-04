@@ -6,7 +6,7 @@ Most of this can be accredited to [`babel-plugin-react-hotify`](https://github.c
 
 ## Installation
 ```
-jspm install babel-plugin-react-hot=github:loggur/babel-plugin-react-hot@1.0.0
+jspm install babel-plugin-react-hot=github:loggur/babel-plugin-react-hot
 ```
 or
 ```
