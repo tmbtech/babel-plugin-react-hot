@@ -1,3 +1,5 @@
+'use strict';
+
 var ReactHotAPI = require('react-hot-api');
 var madeHot = {};
 

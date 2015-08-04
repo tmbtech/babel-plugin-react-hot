@@ -1,12 +1,10 @@
-if (typeof global === 'undefined' && typeof window !== 'undefined') {
-  global = window;
-}
+'use strict';
 
-var System = global && global.System;
-var pluginPath = 'babel-plugin-react-hot';
+var pluginName = 'babel-plugin-react-hot';
+var pluginPath = typeof __dirname === 'undefined' ? pluginName : __dirname;
 
 var makeHotName = 'makeHot';
-var makeHotPath = (System && __dirname || pluginPath)+'/makeHot';
+var makeHotPath = pluginPath+'/makeHot.js';
 
 var reactName = 'React';
 var reactPath = 'react';
@@ -23,7 +21,7 @@ exports = module.exports = transform;
 function transform (babel) {
   var t = babel.types;
 
-  return new babel.Transformer(pluginPath, {
+  return new babel.Transformer(pluginName, {
     /**
      * ES6 ReactComponent
      */
