@@ -17,6 +17,13 @@ function makeHot (React, ReactMount, filename, displayName) {
     if (!madeHot[id]) {
       madeHot[id] = ReactHotAPI(getRootInstances, React);
     }
+
+    if (displayName === null) {
+      displayName = ReactClass.displayName || null;
+      id = filename+'$$$'+displayName;
+    } else if (ReactClass.displayName === undefined) {
+      ReactClass.displayName = displayName;
+    }
     
     return madeHot[id](ReactClass, id);
   };

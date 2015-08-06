@@ -73,7 +73,7 @@ function transform (babel) {
             React,
             mount,
             t.literal(file.opts._address || file.opts.filename),
-            t.literal(node && node.id && node.id.name || '')
+            t.literal(parent && parent.id && parent.id.name || null)
           ]
         ),
         [node]
