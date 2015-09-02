@@ -25,8 +25,10 @@
     "url": "https://github.com/loggur/babel-plugin-react-hot/issues"
   },
   "homepage": "https://github.com/loggur/babel-plugin-react-hot#readme",
+  "peerDependencies": {
+    "react": ">=0.13.0 <0.15.0 || ^0.14.0-alpha"
+  },
   "dependencies": {
-    "react": "^0.13.3",
     "react-hot-api": "^0.4.5"
   },
   "jspm": {
